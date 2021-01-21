@@ -1,31 +1,28 @@
 import React, {Component} from 'react';
-import './User.css';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	withRouter
+} from 'react-router-dom';
 
 class User extends Component {
 
-	constructor(props) {
-		super(props);
-		let {item} = this.props;
-		this.state = {user: item};
-	}
-
-
-	onSelectUser = (id) => {
-		let {onSelectUser} = this.props;
-		onSelectUser(id);
-
-	};
-
 	render() {
-		let {user} = this.state;
+		let {item} = this.props;
 		return (
-			<h3>
-				{user.name}
-				<button onClick={()=> this.onSelectUser(user.id)}>select this user</button>
-			</h3>
+			<div>
+				{item.id} - {item.name}
+				<button>
+					<Link to={'/posts/' + item.id}>
+						posts of user
+					</Link>
+
+				</button>
+			</div>
 		);
 	}
-
 }
 
 export default User;
