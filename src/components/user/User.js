@@ -10,19 +10,21 @@ import {
 class User extends Component {
 
 	render() {
-		let {item} = this.props;
+		console.log(this.props);
+		let {item, match: {url}} = this.props;
+		console.log(url);
 		return (
 			<div>
 				{item.id} - {item.name}
 				<button>
-					<Link to={'/posts/' + item.id}>
-						posts of user
+					<Link to={url + '/' + item.id}>
+						full info
 					</Link>
-
 				</button>
 			</div>
 		);
 	}
 }
 
-export default User;
+export default withRouter(User);
+// export default User;

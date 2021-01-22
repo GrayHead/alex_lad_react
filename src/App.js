@@ -8,6 +8,7 @@ import {
 	withRouter
 } from 'react-router-dom';
 import Posts from './components/posts/Posts';
+import Home from './components/home/Home';
 
 class App extends Component {
 	render() {
@@ -15,12 +16,11 @@ class App extends Component {
 			<Router>
 				<div>
 					<Switch>
-						<Route path={'/'} exact={true} render={() => <Users/>}/>
-						<Route path={'/posts/:userId'} render={
-							({match: {params: {userId}}}) => {
-								return <Posts userId={userId} key={userId}/>;
-							}
-						}/>
+						<Route path={'/'} exact={true} render={() => <Home/>}/>
+						<Route path={'/users'} render={() => <Users/>}/>
+						{/*<Route path={'/posts'} render={() => <Posts/>}/>*/}
+
+
 					</Switch>
 
 				</div>
