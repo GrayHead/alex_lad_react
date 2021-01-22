@@ -6,6 +6,7 @@ class Post extends Component {
 	render() {
 
 		let {item} = this.props;
+		console.log(item);
 		return (
 			<div>
 				<h3>{item.title}</h3>
