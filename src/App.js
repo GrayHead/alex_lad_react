@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
 import User from './User';
+import {useState, useEffect} from 'react';
 
-const usersList = [
+let usersList = [
 	{name: 'vasya', age: 31, status: false},
 	{name: 'petya', age: 30, status: true},
 	{name: 'kolya', age: 29, status: true},
@@ -15,42 +15,22 @@ const usersList = [
 	{name: 'max', age: 31, status: true}
 ];
 
-class App extends Component {
+export default function App() {
 
-	state = {users: []};
-	userIndex = 0;
+	let [users, setUsers] = useState(usersList);
 
-	render() {
-		let {users} = this.state;
-		return (
-			<div>
-				{
+	// render()
+	return (
+		<div>
+			{
+				users.map((value, index) => <User key={index} item={value}/>)
+			}
 
-					users.map((value, index) => <User item={value} key={index}/>)
-				}
-
-
-				<button onClick={this.add}> add</button>
-				<button onClick={this.remove}> remove</button>
-
-			</div>
-		);
-	}
-
-	add = () => {
-		let {users} = this.state;
-		users.push(usersList[this.userIndex]);
-		this.setState({users});
-		this.userIndex++;
-		console.log(users);
-	};
-
-	remove = () => {
-		let {users} = this.state;
-		users.pop();
-		this.setState({users});
-		this.userIndex--;
-	};
+			<button onClick={() => {
+				users.pop();
+				setUsers([...users]);
+			}}>delete
+			</button>
+		</div>
+	);
 }
-
-export default App;

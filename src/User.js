@@ -1,41 +1,38 @@
-import React, {Component} from 'react';
+import {useState, useEffect} from 'react';
 
-class User extends Component {
+export default function User({item}) {
 
-	state = {interavlID: 0};
+	let [status, setStatus] = useState(item.status);
+	let [name, setName] = useState(item.name);
+
+	// cdm
+	useEffect(() => {
+		console.log('effect 1');
+		// cwu
+		return ()=> console.log('delete');
+	}, []);
 
 
-	constructor(props, context) {
-		super(props, context);
-		console.log('constructor');
-	}
+	//cdu
+	useEffect(() => {
+		console.log('effect 2');
+	}, [status]);
 
-	componentDidMount() {
-		console.log('componentDidMount');
-		let interavlID = setInterval(() => console.log('interval'), 1000);
-		this.setState({interavlID});
-	}
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		console.log('componentDidUpdate');
-		console.log(prevProps, prevState);
-	}
+	return (
+		<div>
+			{name} - {status.toString()}
 
-	componentWillUnmount() {
-		console.log('componentWillUnmount');
-		let {interavlID} = this.state;
-		clearInterval(interavlID);
-	}
+			<button onClick={() => {
 
-	render() {
-		let {item} = this.props;
-		return (
-			<div>
-				{item.name}
+				setStatus(!status);
+				console.log(status);
+				setName(name + '!');
 
-			</div>
-		);
-	}
+			}}> change status
+			</button>
+
+
+		</div>
+	);
 }
-
-export default User;
