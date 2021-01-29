@@ -1,15 +1,9 @@
-import React, {Component} from 'react';
-import A from './components/A';
+import Users from './components/Users';
 
-class App extends Component {
-	render() {
-		return (
-			<div>
-
-				<A/>
-			</div>
-		);
-	}
+export default function App() {
+	return (
+		<div>
+			<Users/>
+		</div>
+	);
 }
-
-export default App;

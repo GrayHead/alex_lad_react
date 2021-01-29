@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from 'react-redux';
+import {store} from './redux/store';
 
-
-export const MyContext = React.createContext('xxx');
 
 ReactDOM.render(
 	<React.StrictMode>
-		<MyContext.Provider value={'hello okten'}>
-			<App/>
 
-		</MyContext.Provider>
+		<Provider store={store}>
+			<App/>
+		</Provider>
+
 
 	</React.StrictMode>,
 	document.getElementById('root')
