@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+export const MyContext = React.createContext('xxx');
+
 ReactDOM.render(
 	<React.StrictMode>
-		<App/>
+		<MyContext.Provider value={'hello okten'}>
+			<App/>
+
+		</MyContext.Provider>
+
 	</React.StrictMode>,
 	document.getElementById('root')
 );
