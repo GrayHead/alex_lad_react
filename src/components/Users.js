@@ -1,21 +1,21 @@
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {getUsers} from '../redux/action.creator';
+import User from './User';
 
 export default function Users() {
+	let {user_reducer: state} = useSelector(store => store);
+	const dispatch = useDispatch();
 
-	const store = useSelector((store) => store);
-	console.log(store.reducer);
-	let dispatch = useDispatch();
+	useEffect(() => {
+		getUsers(dispatch);
+	}, []);
+
+
 	return (
 		<div>
 			{
-				store.reducer.map((user, index) =>
-					<div key={index}>
-						{user.name} - {user.age} - <button onClick={() => {
-						dispatch({type: 'INCREMENT_AGE', payload: 100});
-
-					}}>info </button></div>
-				)
-
+				state.users.map(value => <User key={value.id} item={value}/>)
 			}
 
 		</div>
